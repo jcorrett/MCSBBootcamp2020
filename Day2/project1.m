@@ -4,7 +4,7 @@ clc
 
 % Declare Variables
 c = -0.8;
-d = 0.165;
+d = 0.8;
 nmax = 22;
 
 % ICs
@@ -36,10 +36,11 @@ title(['c = ',num2str(c),' d = ',num2str(d)])
 % Part d
 a = -2;
 b = 2;
-m = 100;
 r = @(a,b,m) a + (b-a)*rand(m,1);
 
 % Part e
+m = 100;
+m = 1e7; % uncomment for part g
 rx = r(a,b,m);
 ry = r(a,b,m);
 
@@ -52,10 +53,15 @@ title('Random Initial Conditions')
 % Part f
 kin = 1;
 kout = 1;
+xin = [];
+yin = [];
+xout = [];
+yout = [];
 
-for k = 1:m
-    x(1) = rx(k);
-    y(1) = ry(k);
+
+for j = 1:m
+    x(1) = rx(j);
+    y(1) = ry(j);
 
     % Part a
     for k = 1:nmax-1
@@ -76,8 +82,12 @@ end
 
 figure
 hold on
-plot(xin,yin,'b.','linewidth',1.5)
-plot(xout,yout,'r.','linewidth',1.5)
+if ~isempty(xin)
+    plot(xin,yin,'b.','linewidth',1.5)
+end
+if ~isempty(xout)
+    plot(xout,yout,'r.','linewidth',1.5)
+end
 xlabel('x','fontsize',12)
 ylabel('y','fontsize',12)
 title(['Random Initial Conditions at n = ',num2str(nmax)])
