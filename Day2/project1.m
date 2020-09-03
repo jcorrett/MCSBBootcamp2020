@@ -40,7 +40,7 @@ r = @(a,b,m) a + (b-a)*rand(m,1);
 
 % Part e
 % m = 100;
-m = 1e7; % uncomment for part g
+m = 1e5; % uncomment for part g
 rx = r(a,b,m);
 ry = r(a,b,m);
 
